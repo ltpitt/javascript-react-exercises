@@ -2,6 +2,15 @@
 
 A comprehensive collection of hands-on React exercises organized by learning topics. Each exercise includes both starter code and complete solutions to help you master React concepts progressively.
 
+## ✨ Recently Updated to React 18!
+
+All exercises have been modernized with:
+- **React 18** with the new `createRoot` API
+- **Modern React patterns** and best practices
+- **Enhanced educational comments** explaining key concepts
+- **Updated dependencies** with security fixes
+- **ES6+ syntax** throughout
+
 ## 📁 Repository Structure
 
 ### 🎯 [fundamentals/](./fundamentals/)
@@ -76,9 +85,20 @@ Each exercise folder contains:
 
 ## 🛠 Requirements
 
-- **Node.js** 14.0+ 
-- **npm** 6.0+
-- Modern web browser
+- **Node.js** 16.0+ (recommended: 18.0+)
+- **npm** 8.0+ 
+- Modern web browser with ES6+ support
+
+## 🚀 Modern React Features Used
+
+This repository demonstrates modern React practices including:
+
+- **Functional Components** with hooks (no class components)
+- **React 18** `createRoot` API instead of deprecated `ReactDOM.render`
+- **useState** and **useEffect** hooks for state and side effects
+- **Controlled Components** for form handling
+- **ES6+** features: arrow functions, destructuring, template literals
+- **Modern JSX** patterns and best practices
 
 ## 📖 Additional Resources
 
