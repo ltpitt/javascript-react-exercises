@@ -8,12 +8,20 @@ import { useState } from "react";
  * 
  * 🎯 Goal: Make the input "controlled" by connecting it to React state
  * Currently the input is "uncontrolled" - React doesn't manage its value
+ * 
+ * 🔑 Modern React Concepts Demonstrated:
+ * - useState Hook for state management (replacing class component state)
+ * - Controlled components pattern (React manages form state)
+ * - Event handling with modern function syntax
+ * - Real-time UI updates through state changes
  */
 const App = () => {
-  // State to store the input value
+  // useState Hook: Modern way to manage state in functional components
+  // Returns [currentValue, setterFunction] - uses array destructuring (ES6+)
   const [value, setValue] = useState("");
 
-  // Event handler for input changes
+  // Event handler using ES6+ arrow function syntax
+  // Extracts value from event target (modern event handling pattern)
   const handleChange = (event) => {
     setValue(event.target.value);
   };

@@ -1,6 +1,18 @@
 import "./App.css";
 import logo from "./logo.svg";
 
+/**
+ * Data Display Exercise - Modern React Implementation
+ * Demonstrates modern data processing and rendering patterns
+ * 
+ * 🔑 Modern React Concepts Used:
+ * - Functional Components with arrow function syntax
+ * - ES6+ Destructuring and object lookups
+ * - Array.map() for rendering lists (React best practice)
+ * - Template literals for string interpolation
+ * - Modern JSX patterns with proper key props
+ */
+
 // Use React and the data below to display a list of users alongside their favorite movies.
 // For detailed instructions, refer to Instructions.md.
 
@@ -102,11 +114,18 @@ const App = () => {
       </header>
       <ul>
         <h2>Favorite movie</h2>
+        {/* Modern React List Rendering Pattern:
+            - Using Array.map() to transform data into JSX elements
+            - Each element has a unique key prop (required for React performance)
+            - Object property access using bracket notation
+            - Template literals (ES6+) for string interpolation */}
         {profiles.map((profile) => {
+          // ES6+ const declarations in block scope
           const userName = users[profile.userID].name;
           const favMovieName = movies[profile.favoriteMovieID].name;
+          
           return (
-            <div key={profile.id}>
+            <div key={profile.id}>{/* key prop is essential for React's reconciliation */}
               <p>{`${userName} loves the movie "${favMovieName}"`}</p>
             </div>
           );

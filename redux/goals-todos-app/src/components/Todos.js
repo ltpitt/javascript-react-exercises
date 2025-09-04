@@ -7,12 +7,27 @@ import {
   handleToggle,
 } from "../actions/todos";
 
+/**
+ * Todos Component - Modern React + Redux Implementation
+ * Demonstrates functional component with Redux integration and modern React patterns
+ * 
+ * 🔑 Modern React + Redux Concepts Used:
+ * - Functional Component with hooks
+ * - useRef Hook for uncontrolled input access
+ * - Redux connect HOC for state management
+ * - Modern ES6+ destructuring and arrow functions
+ * - Component composition with props passing
+ */
 const Todos = (props) => {
+  // useRef Hook: Direct DOM access for form input
+  // Modern alternative to class component refs
   const inputRef = useRef();
 
+  // Event handlers using modern ES6+ arrow function syntax
   const addItem = (e) => {
-    e.preventDefault();
-
+    e.preventDefault(); // Prevent default form submission
+    
+    // Dispatch Redux action with callback for input cleanup
     props.dispatch(
       handleAddTodo(inputRef.current.value, () => (inputRef.current.value = ""))
     );
