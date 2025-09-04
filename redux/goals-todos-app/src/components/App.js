@@ -5,9 +5,10 @@ import { connect } from "react-redux";
 import { handleInitialData } from "../actions/shared";
 
 const App = (props) => {
+  const { dispatch } = props;
   useEffect(() => {
-    props.dispatch(handleInitialData());
-  }, []);
+    dispatch(handleInitialData());
+  }, [dispatch]);
 
   if (props.loading === true) {
     return <h3>Loading</h3>;

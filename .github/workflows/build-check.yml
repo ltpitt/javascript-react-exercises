@@ -1,0 +1,48 @@
+name: Exercise Build Check
+
+on:
+  pull_request:
+    branches: [ main, master ]
+  push:
+    branches: [ main, master ]
+
+jobs:
+  build-exercises:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        exercise:
+          - "fundamentals/jsx-expressions/Solution"
+          - "state-management/managing-state/Solution"
+          - "forms/controlled-components-1/Solution"
+          - "hooks/state-and-side-effects/Solution"
+          - "redux/goals-todos-app"
+          - "testing/react-test-demo"
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Use Node.js 18
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+        cache: 'npm'
+        cache-dependency-path: '${{ matrix.exercise }}/package.json'
+
+    - name: Install dependencies
+      run: |
+        cd "${{ matrix.exercise }}"
+        npm ci
+
+    - name: Build exercise
+      run: |
+        cd "${{ matrix.exercise }}"
+        npm run build
+        
+    - name: Run tests (if available)
+      run: |
+        cd "${{ matrix.exercise }}"
+        if [ "${{ matrix.exercise }}" = "testing/react-test-demo" ]; then
+          npm test -- --passWithNoTests --watchAll=false
+        fi
