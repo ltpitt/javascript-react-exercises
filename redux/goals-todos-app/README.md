@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Redux Goals & Todos App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What this exercise teaches
 
-## Available Scripts
+This exercise teaches you comprehensive Redux state management in a React application. You'll learn how to:
 
-In the project directory, you can run:
+- Set up Redux store with multiple reducers
+- Use Redux actions and action creators
+- Connect React components to Redux with react-redux
+- Handle asynchronous operations with Redux Thunk middleware
+- Manage complex application state with Redux patterns
+- Implement CRUD operations in a Redux application
 
-### `npm start`
+## Key concepts used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Redux Store**: Centralized application state management
+- **Reducers**: Pure functions that handle state updates
+- **Actions & Action Creators**: Dispatching state changes
+- **React-Redux**: Connecting React components to Redux store
+- **Redux Thunk**: Middleware for async actions
+- **useEffect**: Side effects for data loading
+- **Component Composition**: Building complex UI from smaller components
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## How to run it
 
-### `npm test`
+1. **Install dependencies** (first time only):
+   ```bash
+   npm install
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Start the development server**:
+   ```bash
+   npm start
+   ```
 
-### `npm run build`
+3. **View the app**: 
+   Open [http://localhost:3000](http://localhost:3000) in your browser
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. **Stop the server**: Press `Ctrl+C` in the terminal
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+5. **Production build** (optional):
+   ```bash
+   CI=false npm run build
+   ```
+   *Note: Uses `CI=false` to bypass ESLint warnings in build process*
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Expected behavior
 
-### `npm run eject`
+When you run this application, you should see:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- A "Loading" message initially while data is fetched
+- Two main sections: "Todo List" and "Goals"
+- **Todo List section**:
+  - Input field to add new todos
+  - List of existing todos with X buttons to remove them
+  - Each todo can be toggled between completed/incomplete states
+- **Goals section**:
+  - Input field to add new goals  
+  - List of goals with X buttons to remove them
+- Real-time updates as you add/remove items
+- Redux DevTools integration (if browser extension is installed)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**🎯 Learning objectives**: This complete Redux application demonstrates:
+- How Redux manages complex application state across multiple features
+- Integration patterns between React and Redux
+- Async data loading with Redux Thunk
+- Proper Redux architecture with actions, reducers, and store setup
+- Real-world CRUD operations in a Redux context
