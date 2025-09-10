@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React Fundamentals Exercises - Interactive Learning Hub</title>
+    <meta name="description" content="Comprehensive collection of hands-on React exercises organized by learning topics. Master React concepts with starter code and complete solutions.">
+    
+    <style>
+        :root {
+            --primary-blue: #0078d4;
+            --primary-blue-dark: #005a9e;
+            --secondary-purple: #6f42c1;
+            --accent-green: #28a745;
+            --accent-orange: #fd7e14;
+            --accent-red: #dc3545;
+            --bg-light: #f8f9fa;
+            --bg-white: #ffffff;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+            --border-light: #dee2e6;
+            --shadow-sm: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            --shadow-md: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: var(--bg-white);
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .stats {
+            display: flex;
+            gap: 30px;
+            font-size: 14px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary-blue);
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .main {
+            padding: 40px 0;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 50px;
+            color: white;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            background: var(--bg-white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .filters h3 {
+            margin-bottom: 20px;
+            color: var(--text-dark);
+            font-size: 18px;
+        }
+
+        .filter-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .filter-button {
+            padding: 8px 16px;
+            border: 2px solid var(--border-light);
+            background: var(--bg-light);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .filter-button:hover {
+            border-color: var(--primary-blue);
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        .filter-button.active {
+            background: var(--primary-blue);
+            border-color: var(--primary-blue);
+            color: white;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 12px 16px;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 16px;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        .search-box:focus {
+            border-color: var(--primary-blue);
+        }
+
+        .exercises-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .category-section {
+            background: var(--bg-white);
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: var(--shadow-md);
+            transition: transform 0.2s ease;
+        }
+
+        .category-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .category-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .fundamentals .category-icon { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .state-management .category-icon { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .forms .category-icon { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .hooks .category-icon { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .redux .category-icon { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .testing .category-icon { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+
+        .category-title {
+            flex-grow: 1;
+        }
+
+        .category-title h3 {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        .category-subtitle {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        .exercise-list {
+            list-style: none;
+        }
+
+        .exercise-item {
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .exercise-item:hover {
+            box-shadow: var(--shadow-sm);
+            border-color: var(--primary-blue);
+        }
+
+        .exercise-header {
+            padding: 15px 20px;
+            background: var(--bg-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .exercise-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .exercise-name {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .exercise-meta {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .difficulty-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .difficulty-beginner {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .difficulty-intermediate {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .difficulty-advanced {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        .tag {
+            background: var(--primary-blue);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .exercise-description {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .exercise-links {
+            padding: 15px 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .exercise-link {
+            flex: 1;
+            text-align: center;
+            padding: 10px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+
+        .starter-link {
+            background: var(--accent-green);
+            color: white;
+        }
+
+        .starter-link:hover {
+            background: #218838;
+            transform: translateY(-1px);
+        }
+
+        .solution-link {
+            background: var(--border-light);
+            color: var(--text-dark);
+        }
+
+        .solution-link:hover {
+            background: var(--text-muted);
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            background: var(--bg-white);
+            padding: 40px 0;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--primary-blue);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .stats {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 36px;
+            }
+
+            .hero p {
+                font-size: 18px;
+            }
+
+            .exercises-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-section {
+                justify-content: center;
+            }
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">⚛</div>
+                    <h1>React Exercises</h1>
+                </div>
+                <div class="stats">
+                    <div class="stat">
+                        <div class="stat-number">13</div>
+                        <div class="stat-label">Exercises</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Categories</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Difficulty Levels</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main">
+        <div class="container">
+            <div class="hero">
+                <h2>Master React Step by Step</h2>
+                <p>Comprehensive collection of hands-on React exercises with starter code and complete solutions. Learn React concepts through practical, progressive exercises.</p>
+            </div>
+
+            <div class="filters">
+                <h3>🔍 Filter & Search</h3>
+                <div class="filter-section">
+                    <div class="filter-button active" onclick="filterByDifficulty('all')">All Levels</div>
+                    <div class="filter-button" onclick="filterByDifficulty('beginner')">Beginner</div>
+                    <div class="filter-button" onclick="filterByDifficulty('intermediate')">Intermediate</div>
+                    <div class="filter-button" onclick="filterByDifficulty('advanced')">Advanced</div>
+                </div>
+                <input type="text" class="search-box" placeholder="Search exercises by name, tags, or concepts..." oninput="searchExercises(this.value)">
+            </div>
+
+            <div class="exercises-grid">
+                <!-- Fundamentals -->
+                <div class="category-section fundamentals" data-category="fundamentals">
+                    <div class="category-header">
+                        <div class="category-icon">🎯</div>
+                        <div class="category-title">
+                            <h3>Fundamentals</h3>
+                            <div class="category-subtitle">Learn the basics of React and JSX</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="beginner" data-tags="jsx expressions javascript basics">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">JSX Expressions</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                                        <span class="tag">jsx</span>
+                                        <span class="tag">expressions</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn to embed JavaScript expressions in JSX. Practice using variables, functions, and dynamic content in React components.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="fundamentals/jsx-expressions/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="fundamentals/jsx-expressions/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- State Management -->
+                <div class="category-section state-management" data-category="state-management">
+                    <div class="category-header">
+                        <div class="category-icon">🔄</div>
+                        <div class="category-title">
+                            <h3>State Management</h3>
+                            <div class="category-subtitle">Master React state and props</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="beginner" data-tags="props components data-flow communication">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Passing Data 1</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                                        <span class="tag">props</span>
+                                        <span class="tag">components</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn the basics of passing data between components using props. Practice component communication patterns.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="state-management/passing-data-1/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="state-management/passing-data-1/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="beginner" data-tags="props components data-flow advanced">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Passing Data 2</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-beginner">Beginner</span>
+                                        <span class="tag">props</span>
+                                        <span class="tag">components</span>
+                                        <span class="tag">advanced</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Advanced props and component communication patterns. Learn complex data flow scenarios.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="state-management/passing-data-2/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="state-management/passing-data-2/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="intermediate" data-tags="usestate hooks state local-state">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Managing State</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                                        <span class="tag">useState</span>
+                                        <span class="tag">hooks</span>
+                                        <span class="tag">state</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Master the useState hook for local component state management. Learn state update patterns and best practices.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="state-management/managing-state/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="state-management/managing-state/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="intermediate" data-tags="state props comprehensive full-app">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">All Together</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                                        <span class="tag">state</span>
+                                        <span class="tag">props</span>
+                                        <span class="tag">comprehensive</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Comprehensive exercise combining all state management concepts. Build a complete interactive application with user management.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="state-management/all-together/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="state-management/all-together/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Forms -->
+                <div class="category-section forms" data-category="forms">
+                    <div class="category-header">
+                        <div class="category-icon">📝</div>
+                        <div class="category-title">
+                            <h3>Forms</h3>
+                            <div class="category-subtitle">Handle user input and controlled components</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="intermediate" data-tags="forms controlled-components input validation">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Controlled Components 1</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                                        <span class="tag">forms</span>
+                                        <span class="tag">controlled</span>
+                                        <span class="tag">input</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn the fundamentals of controlled components. Make form inputs mirror what users type with React state.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="forms/controlled-components-1/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="forms/controlled-components-1/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="intermediate" data-tags="forms controlled-components advanced validation">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Controlled Components 2</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                                        <span class="tag">forms</span>
+                                        <span class="tag">controlled</span>
+                                        <span class="tag">advanced</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Advanced form handling patterns with controlled components. Complex form validation and interaction patterns.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="forms/controlled-components-2/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="forms/controlled-components-2/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Hooks -->
+                <div class="category-section hooks" data-category="hooks">
+                    <div class="category-header">
+                        <div class="category-icon">🎣</div>
+                        <div class="category-title">
+                            <h3>Hooks</h3>
+                            <div class="category-subtitle">Work with React hooks and side effects</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="intermediate" data-tags="usestate hooks review patterns">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">State Management Recap</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-intermediate">Intermediate</span>
+                                        <span class="tag">useState</span>
+                                        <span class="tag">hooks</span>
+                                        <span class="tag">review</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Review and reinforce useState patterns before diving into useEffect. Practice advanced state patterns and initialization strategies.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="hooks/state-management-recap/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="hooks/state-management-recap/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="useeffect side-effects lifecycle api async">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">State and Side Effects</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">useEffect</span>
+                                        <span class="tag">side-effects</span>
+                                        <span class="tag">lifecycle</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn to handle side effects with useEffect. Master component lifecycle equivalents, API calls, and async operations.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="hooks/state-and-side-effects/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="hooks/state-and-side-effects/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="useeffect cleanup memory-leaks subscriptions">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Side Effect Cleanup</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">useEffect</span>
+                                        <span class="tag">cleanup</span>
+                                        <span class="tag">memory-leaks</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn proper cleanup patterns to prevent memory leaks. Handle subscriptions, timers, and component unmounting scenarios.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="hooks/side-effect-cleanup/Starter/" class="exercise-link starter-link">Start Exercise</a>
+                                <a href="hooks/side-effect-cleanup/Solution/" class="exercise-link solution-link">View Solution</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Redux -->
+                <div class="category-section redux" data-category="redux">
+                    <div class="category-header">
+                        <div class="category-icon">🏪</div>
+                        <div class="category-title">
+                            <h3>Redux</h3>
+                            <div class="category-subtitle">Learn Redux for complex state management</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="redux pure concepts actions reducers">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Redux Exercise (Pure)</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">redux</span>
+                                        <span class="tag">pure</span>
+                                        <span class="tag">concepts</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn pure Redux concepts without React integration. Understand actions, reducers, and the Redux store fundamentals.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="redux/redux-exercise.html" class="exercise-link starter-link">Open Exercise</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="redux react integration full-app todos goals">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Goals & Todos App</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">redux</span>
+                                        <span class="tag">react</span>
+                                        <span class="tag">full-app</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Complete React + Redux application with todo list and goals features. Full CRUD operations with modern Redux patterns.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="redux/goals-todos-app/" class="exercise-link starter-link">Launch App</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Testing -->
+                <div class="category-section testing" data-category="testing">
+                    <div class="category-header">
+                        <div class="category-icon">🧪</div>
+                        <div class="category-title">
+                            <h3>Testing</h3>
+                            <div class="category-subtitle">Test React applications</div>
+                        </div>
+                    </div>
+                    <ul class="exercise-list">
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="testing jest react-testing-library components unit-tests">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">React Test Demo</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">testing</span>
+                                        <span class="tag">jest</span>
+                                        <span class="tag">components</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn React component testing with Jest and React Testing Library. Comprehensive examples and best practices.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="testing/react-test-demo/" class="exercise-link starter-link">View Tests</a>
+                            </div>
+                        </li>
+                        <li class="exercise-item" data-difficulty="advanced" data-tags="testing redux jest integration async">
+                            <div class="exercise-header">
+                                <div class="exercise-title">
+                                    <span class="exercise-name">Redux Test Demo</span>
+                                    <div class="exercise-meta">
+                                        <span class="difficulty-badge difficulty-advanced">Advanced</span>
+                                        <span class="tag">testing</span>
+                                        <span class="tag">redux</span>
+                                        <span class="tag">integration</span>
+                                    </div>
+                                </div>
+                                <div class="exercise-description">
+                                    Learn to test Redux applications including actions, reducers, and connected components. Async testing patterns.
+                                </div>
+                            </div>
+                            <div class="exercise-links">
+                                <a href="testing/redux-test-demo/" class="exercise-link starter-link">View Tests</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <h3>🚀 Ready to Start Learning?</h3>
+                <p>Each exercise includes detailed instructions and complete solutions. Follow the recommended learning path or jump into any topic that interests you!</p>
+                <div class="footer-links">
+                    <a href="README.md" class="footer-link">📖 Documentation</a>
+                    <a href="TESTING.md" class="footer-link">🧪 Testing Guide</a>
+                    <a href="https://reactjs.org/docs/getting-started.html" class="footer-link" target="_blank">⚛️ React Docs</a>
+                    <a href="https://github.com/ltpitt/javascript-react-exercises" class="footer-link" target="_blank">📦 GitHub Repo</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentDifficultyFilter = 'all';
+        let currentSearchTerm = '';
+
+        function filterByDifficulty(difficulty) {
+            currentDifficultyFilter = difficulty;
+            
+            // Update active button
+            document.querySelectorAll('.filter-button').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            applyFilters();
+        }
+
+        function searchExercises(searchTerm) {
+            currentSearchTerm = searchTerm.toLowerCase();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            const exerciseItems = document.querySelectorAll('.exercise-item');
+            const categorySections = document.querySelectorAll('.category-section');
+            
+            exerciseItems.forEach(item => {
+                const difficulty = item.dataset.difficulty;
+                const tags = item.dataset.tags;
+                const exerciseName = item.querySelector('.exercise-name').textContent.toLowerCase();
+                const exerciseDescription = item.querySelector('.exercise-description').textContent.toLowerCase();
+                
+                // Check difficulty filter
+                const matchesDifficulty = currentDifficultyFilter === 'all' || difficulty === currentDifficultyFilter;
+                
+                // Check search term
+                const matchesSearch = currentSearchTerm === '' || 
+                    exerciseName.includes(currentSearchTerm) ||
+                    exerciseDescription.includes(currentSearchTerm) ||
+                    tags.includes(currentSearchTerm);
+                
+                // Show/hide item
+                if (matchesDifficulty && matchesSearch) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+            
+            // Hide/show category sections if all exercises in them are hidden
+            categorySections.forEach(section => {
+                const visibleExercises = section.querySelectorAll('.exercise-item:not(.hidden)');
+                if (visibleExercises.length === 0) {
+                    section.classList.add('hidden');
+                } else {
+                    section.classList.remove('hidden');
+                }
+            });
+        }
+
+        // Initialize with all filters active
+        applyFilters();
+    </script>
+</body>
+</html>
