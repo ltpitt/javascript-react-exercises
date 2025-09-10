@@ -72,6 +72,18 @@ Each exercise folder contains:
 
 4. Open [http://localhost:3000](http://localhost:3000) to view your app
 
+5. Run tests (for exercises that have them):
+   ```bash
+   npm test
+   ```
+
+### Testing and Linting
+
+Selected exercises include unit tests and ESLint configuration. See [TESTING.md](./TESTING.md) for details on:
+- Which exercises have tests
+- Running tests and linting
+- Testing best practices
+
 ## 📚 Learning Path
 
 **Recommended order for beginners:**
