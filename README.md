@@ -121,7 +121,14 @@ This repository demonstrates modern React practices including:
 
 ## 🤝 Contributing
 
-Found an issue or want to improve an exercise? Feel free to:
+We welcome contributions that enhance the learning experience! Please see our [Contributing Guide](CONTRIBUTING.md) for detailed information on:
+
+- How to set up the development environment
+- Types of contributions we welcome
+- Code style and testing requirements
+- Pull request process
+
+Quick start:
 1. Report bugs via GitHub issues
 2. Submit pull requests with improvements
 3. Suggest new exercise ideas
