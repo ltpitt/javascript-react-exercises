@@ -40,6 +40,11 @@ Learn Redux for complex state management
 - **redux-exercise.html** - Pure Redux concepts (HTML/JS)
 - **goals-todos-app** - React + Redux application
 
+### ⚡ [zustand/](./zustand/)
+Learn Zustand - a modern, lightweight state management solution
+- **zustand-basics** - Basic Zustand store creation and usage
+- **zustand-advanced** - Advanced patterns with persistence and middleware
+
 ### 🧪 [testing/](./testing/)
 Test React applications
 - **react-test-demo** - Basic React component testing
@@ -92,8 +97,9 @@ Selected exercises include unit tests and ESLint configuration. See [TESTING.md]
 2. **State Management** → Understand props, state, and component communication
 3. **Forms** → Handle user input with controlled components
 4. **Hooks** → Master useEffect and side effects
-5. **Redux** → Learn advanced state management
-6. **Testing** → Write tests for your React applications
+5. **Redux** → Learn advanced state management with Redux
+6. **Zustand** → Explore modern, lightweight state management
+7. **Testing** → Write tests for your React applications
 
 ## 🛠 Requirements
 
