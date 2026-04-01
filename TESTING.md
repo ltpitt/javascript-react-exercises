@@ -2,7 +2,7 @@
 
 ## Overview
 
-Selected exercises now include basic unit tests to validate core functionality and demonstrate testing best practices with React Testing Library and Jest.
+Selected exercises now include basic unit tests to validate core functionality and demonstrate testing best practices with React Testing Library and Vitest.
 
 ## Exercises with Tests
 
@@ -28,14 +28,9 @@ npm test
 ./test-exercises.sh
 ```
 
-## ESLint Configuration
+## Linting
 
-All exercises use Create React App's built-in ESLint configuration with:
-- React-specific rules
-- React Testing Library rules
-- Modern ES6+ syntax support
-
-### Running ESLint
+All exercises support ESLint. To run linting on an exercise:
 ```bash
 cd "exercise-directory"
 npx eslint src/ --ext .js,.jsx
@@ -52,7 +47,7 @@ Tests follow React Testing Library best practices:
 ## Testing Dependencies
 
 All exercises include:
-- **Jest** - Test runner (via react-scripts)
+- **Vitest** - Test runner (replaces Jest, works seamlessly with Vite)
 - **@testing-library/react** - React Testing Library
-- **@testing-library/jest-dom** - Custom Jest matchers
+- **@testing-library/jest-dom** - Custom matchers (compatible with Vitest)
 - **@testing-library/user-event** - User interaction utilities
