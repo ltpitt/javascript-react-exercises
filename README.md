@@ -2,13 +2,14 @@
 
 A comprehensive collection of hands-on React exercises organized by learning topics. Each exercise includes both starter code and complete solutions to help you master React concepts progressively.
 
-## ✨ Recently Updated to React 18!
+## ✨ Migrated to Vite!
 
 All exercises have been modernized with:
+- **Vite** as the build tool (replacing Create React App)
 - **React 18** with the new `createRoot` API
 - **Modern React patterns** and best practices
 - **Enhanced educational comments** explaining key concepts
-- **Updated dependencies** with security fixes
+- **Vitest** for testing (replacing Jest)
 - **ES6+ syntax** throughout
 
 ## 📁 Repository Structure
@@ -75,7 +76,7 @@ Each exercise folder contains:
    npm start
    ```
 
-4. Open [http://localhost:3000](http://localhost:3000) to view your app
+4. Open [http://localhost:5173](http://localhost:5173) to view your app
 
 5. Run tests (for exercises that have them):
    ```bash
@@ -103,8 +104,8 @@ Selected exercises include unit tests and ESLint configuration. See [TESTING.md]
 
 ## 🛠 Requirements
 
-- **Node.js** 16.0+ (recommended: 18.0+)
-- **npm** 8.0+ 
+- **Node.js** 18.0+ (recommended: 20.0+)
+- **npm** 9.0+ 
 - Modern web browser with ES6+ support
 
 ## 🚀 Modern React Features Used

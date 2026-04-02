@@ -21,12 +21,12 @@ jobs:
           - "testing/react-test-demo"
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
-    - name: Use Node.js 18
-      uses: actions/setup-node@v3
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
       with:
-        node-version: '18'
+        node-version: '20'
         cache: 'npm'
         cache-dependency-path: '${{ matrix.exercise }}/package.json'
 
@@ -44,5 +44,5 @@ jobs:
       run: |
         cd "${{ matrix.exercise }}"
         if [ "${{ matrix.exercise }}" = "testing/react-test-demo" ]; then
-          npm test -- --passWithNoTests --watchAll=false
+          npm test
         fi

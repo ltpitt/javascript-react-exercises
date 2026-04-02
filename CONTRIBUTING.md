@@ -49,7 +49,7 @@ Each exercise is an independent React application. To work on any exercise:
 
 4. **Run tests** (if available):
    ```bash
-   npm test -- --watchAll=false
+   npm test
    ```
 
 5. **Build for production**:
@@ -76,7 +76,7 @@ Each exercise is an independent React application. To work on any exercise:
 - Include tests where educational value is added
 - Use React Testing Library for component tests
 - Follow patterns established in `testing/react-test-demo`
-- Ensure tests pass with `npm test -- --watchAll=false`
+- Ensure tests pass with `npm test`
 
 ### 🐛 Reporting Issues
 
@@ -144,7 +144,7 @@ cd path/to/modified/exercise
 npm install && npm start
 # Verify the exercise works correctly in browser
 npm run build  # Must complete successfully
-npm test -- --watchAll=false  # If tests exist
+npm test  # If tests exist
 ```
 
 #### For New Exercises:
