@@ -40,9 +40,7 @@ jobs:
         cd "${{ matrix.exercise }}"
         npm run build
         
-    - name: Run tests (if available)
+    - name: Run tests
       run: |
         cd "${{ matrix.exercise }}"
-        if [ "${{ matrix.exercise }}" = "testing/react-test-demo" ]; then
-          npm test -- --reporter=verbose
-        fi
+        npm test -- --reporter=verbose --passWithNoTests
