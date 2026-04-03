@@ -2,7 +2,7 @@
 
 Always reference these instructions first and fallback to search or bash commands only when you encounter unexpected information that does not match the info here.
 
-This repository contains React fundamentals training exercises organized by topic. Each topic contains exercises with Starter and Solution folders, each being an independent React application built with Create React App.
+This repository contains React fundamentals training exercises organized by topic. Each topic contains exercises with Starter and Solution folders, each being an independent React application built with Vite.
 
 ## Repository Structure
 
@@ -34,7 +34,7 @@ This repository contains React fundamentals training exercises organized by topi
 │   └── redux-exercise.html (standalone HTML)
 └── testing/
     ├── react-test-demo/      (React app with comprehensive tests)
-    ├── redux-test-demo/      (Redux app with tests - has config issue)
+    ├── redux-test-demo/      (Redux app with tests)
     └── Jest utility files
 ```
 
@@ -53,7 +53,7 @@ Each exercise folder is an independent React application. To work with any exerc
    npm install
    ```
    - NEVER CANCEL: Installation takes 10-60 seconds depending on package cache. Set timeout to 120+ seconds.
-   - Expect deprecation warnings for @babel/plugin-proposal-*, svgo and stable packages - these are normal.
+   - Deprecation warnings are normal and expected - do not attempt to fix.
    - Security vulnerabilities are expected in educational repositories.
 
 3. **Start development server** (takes 3-4 seconds):
@@ -61,8 +61,7 @@ Each exercise folder is an independent React application. To work with any exerc
    npm start
    ```
    - NEVER CANCEL: Server starts in 3-4 seconds. Set timeout to 30+ seconds.
-   - Opens http://localhost:3000 automatically
-   - Expect browserslist and webpack deprecation warnings - these are normal.
+   - Opens http://localhost:5173 automatically (Vite default port).
 
 4. **Build for production** (takes 6-7 seconds):
    ```bash
@@ -73,9 +72,10 @@ Each exercise folder is an independent React application. To work with any exerc
 
 5. **Run tests** (takes 3 seconds):
    ```bash
-   npm test -- --watchAll=false
+   npm test
    ```
    - NEVER CANCEL: Tests complete in 3 seconds. Set timeout to 30+ seconds.
+   - Uses Vitest (not Jest). The `--watchAll=false` flag is not needed.
    - Many Starter exercises have no tests and will exit with code 1 - this is normal.
    - react-test-demo has comprehensive working tests.
 
@@ -117,7 +117,7 @@ Each exercise folder is an independent React application. To work with any exerc
 
 ### testing/
 - react-test-demo: React testing examples (working tests)
-- redux-test-demo: Redux testing examples (has @testing-library/jest-dom import issue)
+- redux-test-demo: Redux testing examples (uses RTK 2 + react-redux 9)
 - Additional Jest utility files (Package.json, standalone test files)
 
 ## Validation Scenarios
@@ -127,21 +127,21 @@ Each exercise folder is an independent React application. To work with any exerc
 #### Basic React Exercise Validation:
 1. Navigate to exercise directory (e.g., `fundamentals/jsx-expressions/Starter`)
 2. Run `npm install && npm start` 
-3. Open http://localhost:3000
+3. Open http://localhost:5173
 4. Verify the React app displays correctly with expected content
 5. Example: jsx-expressions shows "Welcome to React!" with release facts
 
 #### State Management Exercise Validation:
 1. Navigate to exercise directory (e.g., `state-management/passing-data-1/Starter`)
 2. Run `npm install && npm start`
-3. Open http://localhost:3000
+3. Open http://localhost:5173
 4. Verify "ReactND - Coding Practice" header appears
 5. Verify favorite movies list displays user names and movie titles correctly
 
 #### Redux Exercise Validation:
 1. Navigate to `redux/goals-todos-app`
 2. Run `npm install && npm start`
-3. Open http://localhost:3000
+3. Open http://localhost:5173
 4. Wait for "Loading" to disappear and app to fully load
 5. Test adding a new todo item in the Todo List section
 6. Test adding a new goal in the Goals section  
@@ -150,10 +150,9 @@ Each exercise folder is an independent React application. To work with any exerc
 
 #### Testing Exercise Validation:
 1. Navigate to `testing/react-test-demo`
-2. Run `npm install && npm test -- --watchAll=false`
+2. Run `npm install && npm test`
 3. Verify all tests pass (expect some console warnings in test output - these are normal)
 4. Run `npm start` to verify the app also runs correctly
-5. Note: redux-test-demo has @testing-library/jest-dom import configuration issue
 
 ## Important Notes
 
@@ -161,10 +160,11 @@ Each exercise folder is an independent React application. To work with any exerc
 - **NO global build scripts**: Work within individual exercise directories
 - **All exercises build successfully**: No known ESLint build failures in current version
 - **Missing Tests**: Many Starter exercises intentionally have no tests
-- **Port Usage**: Only one `npm start` can run at a time (all use port 3000)
+- **Port Usage**: Only one `npm start` can run at a time (all use port 5173 - Vite default)
 - **Deprecation Warnings**: Normal and expected - do not attempt to fix
 - **Security Vulnerabilities**: Expected in educational repositories - do not attempt to fix
-- **React 18**: All exercises use React 18 with createRoot API and modern patterns
+- **React 19**: All exercises use React 19 with createRoot API and modern patterns
+- **Vite**: All exercises use Vite (not Create React App). Source files use `.jsx` extension.
 
 ## Common Tasks
 
@@ -177,9 +177,62 @@ Each exercise folder is an independent React application. To work with any exerc
 
 ### Adding New Features:
 1. Always work within existing exercise structure
-2. Follow Create React App conventions
+2. Follow Vite conventions (`.jsx` file extensions, `vite.config.js`)
 3. Test both development (`npm start`) and production build (`npm run build`)
 4. Validate with appropriate user scenarios
+
+### Upgrading Dependencies (Dependabot / Manual):
+After updating any `package.json` dependency versions across exercises, **always regenerate all lock files** or CI (`npm ci`) will fail with version mismatch errors. Run the following from the repository root:
+
+```bash
+BASE="$(pwd)"
+find . -name "package.json" \
+  ! -path "*/node_modules/*" \
+  ! -path "*/.github/*" \
+  -execdir sh -c 'echo "=== $(pwd) ===" && npm install --package-lock-only' \;
+```
+
+Or iterate manually over each exercise directory:
+
+```bash
+for dir in \
+  "fundamentals/jsx-expressions/Starter" \
+  "fundamentals/jsx-expressions/Solution" \
+  "state-management/passing-data-1/Starter" \
+  "state-management/passing-data-1/Solution" \
+  "state-management/passing-data-2/Starter" \
+  "state-management/passing-data-2/Solution A" \
+  "state-management/passing-data-2/Solution B" \
+  "state-management/managing-state/Starter" \
+  "state-management/managing-state/Solution" \
+  "state-management/all-together/Starter" \
+  "state-management/all-together/Solution" \
+  "forms/controlled-components-1/Starter" \
+  "forms/controlled-components-1/Solution" \
+  "forms/controlled-components-2/Starter" \
+  "forms/controlled-components-2/Solution" \
+  "hooks/state-management-recap/Starter" \
+  "hooks/state-management-recap/Solution" \
+  "hooks/state-and-side-effects/Starter" \
+  "hooks/state-and-side-effects/Solution" \
+  "hooks/side-effect-cleanup/Starter" \
+  "hooks/side-effect-cleanup/Solution" \
+  "redux/goals-todos-app" \
+  "zustand/zustand-basics/Starter" \
+  "zustand/zustand-basics/Solution" \
+  "zustand/zustand-advanced/Starter" \
+  "zustand/zustand-advanced/Solution" \
+  "testing/react-test-demo" \
+  "testing/redux-test-demo" \
+  "testing"; do
+  echo "=== $dir ===" && cd "$BASE/$dir" && npm install --package-lock-only && cd "$BASE"
+done
+```
+
+Key points:
+- Use `npm install --package-lock-only` to update only the lock file without touching `node_modules`.
+- Commit all updated `package-lock.json` files together with the `package.json` changes.
+- Verify with `npm ci` in one of the affected directories after regenerating.
 
 ### Debugging Issues:
 - Check browser console for React/Redux errors
