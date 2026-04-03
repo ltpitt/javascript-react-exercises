@@ -44,5 +44,5 @@ jobs:
       run: |
         cd "${{ matrix.exercise }}"
         if [ "${{ matrix.exercise }}" = "testing/react-test-demo" ]; then
-          npm test
+          npm test -- --reporter=verbose
         fi
