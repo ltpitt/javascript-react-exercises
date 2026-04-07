@@ -2,17 +2,13 @@ import React from 'react';
 import useTodoStore from './store';
 
 const TodoFilters = () => {
-  const { filter, setFilter, getActiveCount, getCompletedCount, clearCompleted, isLoading } = useTodoStore(state => ({
-    filter: state.filter,
-    setFilter: state.setFilter,
-    getActiveCount: state.getActiveCount,
-    getCompletedCount: state.getCompletedCount,
-    clearCompleted: state.clearCompleted,
-    isLoading: state.isLoading,
-  }));
-
-  const activeCount = getActiveCount();
-  const completedCount = getCompletedCount();
+  const filter = useTodoStore(state => state.filter);
+  const setFilter = useTodoStore(state => state.setFilter);
+  // Subscribe to todos directly so counts re-render when todos change
+  const activeCount = useTodoStore(state => state.todos.filter(t => !t.completed).length);
+  const completedCount = useTodoStore(state => state.todos.filter(t => t.completed).length);
+  const clearCompleted = useTodoStore(state => state.clearCompleted);
+  const isLoading = useTodoStore(state => state.isLoading);
 
   const filterButtons = [
     { key: 'all', label: 'All' },

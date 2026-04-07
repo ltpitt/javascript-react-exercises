@@ -2,10 +2,8 @@ import React from 'react';
 import useTodoStore from './store';
 
 const TodoItem = ({ todo }) => {
-  const { toggleTodo, deleteTodo } = useTodoStore(state => ({
-    toggleTodo: state.toggleTodo,
-    deleteTodo: state.deleteTodo,
-  }));
+  const toggleTodo = useTodoStore(state => state.toggleTodo);
+  const deleteTodo = useTodoStore(state => state.deleteTodo);
 
   return (
     <div 
@@ -47,6 +45,9 @@ const TodoItem = ({ todo }) => {
 };
 
 const TodoList = () => {
+  // Subscribe to todos and filter directly so the component re-renders on changes
+  const todos = useTodoStore(state => state.todos);
+  const filter = useTodoStore(state => state.filter);
   const getFilteredTodos = useTodoStore(state => state.getFilteredTodos);
   const filteredTodos = getFilteredTodos();
 
