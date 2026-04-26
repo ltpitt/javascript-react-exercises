@@ -1,10 +1,10 @@
 version: 2
 updates:
-  # GitHub Actions – group all action bumps into one PR per week
+  # GitHub Actions – group all action bumps into one PR per month
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-actions:
         patterns:
@@ -18,11 +18,16 @@ updates:
   # Each entry uses a group so that when several packages are bumped at once
   # (e.g. React + Vite + Vitest all release together) they land in a single PR
   # instead of one PR per package.
+  #
+  # Schedule is monthly (not weekly) to keep PR volume manageable: all 16
+  # Solution directories share the same dependency set, so every release would
+  # otherwise open 16 PRs at once. Monthly batching cuts that to ~12 rounds
+  # per year instead of ~52.
 
   - package-ecosystem: "npm"
     directory: "/fundamentals/jsx-expressions/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -31,7 +36,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/state-management/managing-state/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -40,7 +45,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/state-management/all-together/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -49,7 +54,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/state-management/passing-data-1/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -58,7 +63,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/state-management/passing-data-2/Solution A"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -67,7 +72,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/state-management/passing-data-2/Solution B"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -76,7 +81,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/forms/controlled-components-1/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -85,7 +90,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/forms/controlled-components-2/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -94,7 +99,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/hooks/state-and-side-effects/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -103,7 +108,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/hooks/state-management-recap/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -112,7 +117,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/hooks/side-effect-cleanup/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -121,7 +126,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/redux/goals-todos-app"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -130,7 +135,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/zustand/zustand-basics/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -139,7 +144,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/zustand/zustand-advanced/Solution"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -148,7 +153,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/testing/react-test-demo"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
@@ -157,7 +162,7 @@ updates:
   - package-ecosystem: "npm"
     directory: "/testing/redux-test-demo"
     schedule:
-      interval: "weekly"
+      interval: "monthly"
     groups:
       all-dependencies:
         patterns:
